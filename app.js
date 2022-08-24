@@ -9,10 +9,10 @@ app.get("/", (req, res) => {
 });
 
 // test method
-app.post('/tshirt/:id', (req, res) => {
+// app.post('/tshirt/:id', (req, res) => {
 
-    const { id } = req.params;
-    const { logo } = req.body;
+//     const { id } = req.params;
+//     const { logo } = req.body;
 
     // if (!logo) {
     //     res.status(418).send({ message: 'We need a logo!' });
@@ -21,9 +21,9 @@ app.post('/tshirt/:id', (req, res) => {
     // }
 
 
-    res.send({tshirt: `not the problem`});
+    // res.send({tshirt: `not the problem`});
 
-});
+// });
 
 // test method
 app.get('/tshirt', (req, res) => {
