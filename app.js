@@ -1,8 +1,8 @@
-const app = require("express")();
-const exp = express(); // middleware for parsing JSON 
+const express = require("express")();
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-exp.use(express.json()); // use the middle for parsing JSON 
+app.use(express.json()); // use the middle for parsing 
 
 
 app.get("/", (req, res) => {
