@@ -1,8 +1,8 @@
-const express = require("express")();
-const app = express();
+const app = require("express")();
+// const exp = express(); // middleware for parsing JSON 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json()); // use the middle for parsing 
+// exp.use(express.json()); // use the middle for parsing 
 
 
 app.get("/", (req, res) => {
@@ -10,17 +10,17 @@ app.get("/", (req, res) => {
 });
 
 // test method
-app.post('/tshirt/:id', (req, res) => {
+// app.post('/tshirt/:id', (req, res) => {
 
-    const { id } = req.params;
-    const { logo } = req.body;
+//     const { id } = req.params;
+//     const { logo } = req.body;
 
-    if (!logo) {
-        res.status(418).send({ message: 'We need a logo!' });
-    } else {
-        res.send({tshirt: `Tshirt with your ${logo} and ID of ${id}`});
-    }
-});
+//     if (!logo) {
+//         res.status(418).send({ message: 'We need a logo!' });
+//     } else {
+//         res.send({tshirt: `Tshirt with your ${logo} and ID of ${id}`});
+//     }
+// });
 
 // test method
 app.get('/tshirt', (req, res) => {
