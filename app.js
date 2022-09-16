@@ -22,15 +22,9 @@ client.connect(function(err) {
     console.log('connected');
 });
 
-client.query(`SELECT * FROM leaderboard`, (err, res) => {
-    if(!err) {
-        console.log(res.rows);
-    } else {
-        console.log(err.message);
-    }
-    client.end;
-})
 
+// *************************************************************************************************
+//                                             Resources for convert values project
 
 // convert celcius to fahrenheit microservice
 app.get('/celciusToFahrenheit/:num', function(req, res) {
@@ -75,7 +69,25 @@ app.get('/kilogramsToPounds/:num', function(req, res) {
 });
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server RUNNNNNNING on port ${process.env.PORT}`);
+    console.log(`Server running on port ${process.env.PORT}`);
+});
+
+
+// *************************************************************************************************
+//                                Resources for 2048 clone project
+
+// convert kilograms to pounds microservice
+app.get('/getLeaderboard', function(req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
+
+    var result;
+    client.query(`SELECT * FROM leaderboard`, (err, res) => {
+
+        result = res.rows;
+        client.end;
+    })
+    
+    res.json({"result": result});
 });
 
 
