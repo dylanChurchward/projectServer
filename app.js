@@ -85,7 +85,7 @@ app.get('/getLeaderboard', function(req, res) {
 
     client.query(`SELECT * FROM leaderboard`, (err, res) => {
 
-        // result = res.rows;
+        result = res.rows;
         client.end;
 
     })
