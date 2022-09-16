@@ -92,7 +92,7 @@ app.get('/getLeaderboard', function(req, res) {
 
 
     
-    res.json({result});
+    res.json({"result": "yeah"});
 });
 
 
