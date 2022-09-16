@@ -87,12 +87,11 @@ app.get('/getLeaderboard', function(req, res) {
 
         result = res.rows;
         client.end;
-        console.log(result)
 
     })
 
     
-    res.json({"result": result});
+    res.body(result);
 });
 
 
