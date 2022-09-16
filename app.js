@@ -78,31 +78,15 @@ app.listen(process.env.PORT || PORT, () => {
 
 // convert kilograms to pounds microservice
 app.get('/getLeaderboard', function(req, res) {
-    // res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
+    res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
-    var result = "..."
-
-
-    client.query(`SELECT * FROM leaderboard`, (err, res) => {
-
-        result = res.rows;
+    client.query(`SELECT * FROM leaderboard`, (err, response) => {
+        res.json({"result": res.rows});
         client.end;
-
     })
 
-
-    
-    res.json({"result": result});
 });
 
-// var result;
-// client.query(`SELECT * FROM leaderboard`, (err, res) => {
-
-//     result = res.rows;
-//     client.end;
-
-//     console.log(result)
-// })
 
 
 
