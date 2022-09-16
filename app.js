@@ -91,7 +91,7 @@ app.get('/getLeaderboard', function(req, res) {
     })
 
     
-    res.body(result);
+    res.json(result);
 });
 
 
