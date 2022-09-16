@@ -3,6 +3,34 @@ var app = express();
 
 const PORT = process.env.PORT || 3000
 
+const {Client} = require('pg');
+
+const client = new Client({
+    user: 'qphcrsbmppjysd',
+    host: 'ec2-18-208-55-135.compute-1.amazonaws.com',
+    database: 'db115kej9va1fg',
+    password: 'bd04f9ef256656c56768d5d604991e7da483261356b789733c51a27ed5652e89',
+    port: 5432,
+    ssl: {
+        require: true,
+        rejectUnauthorized: false
+    }
+})
+
+client.connect(function(err) {
+    if (err) throw err;
+    console.log('connected');
+});
+
+client.query(`SELECT * FROM leaderboard`, (err, res) => {
+    if(!err) {
+        console.log(res.rows);
+    } else {
+        console.log(err.message);
+    }
+    client.end;
+})
+
 
 // convert celcius to fahrenheit microservice
 app.get('/celciusToFahrenheit/:num', function(req, res) {
