@@ -85,9 +85,10 @@ app.get('/getLeaderboard', function(req, res) {
         client.end;
     })
 
+});
 
-    // Add a new record to leader board database 
-app.get('/putLeaderboard/:playername/', function(req, res) {
+// Add a new record to leader board database 
+app.get('/putLeaderboard/:playername', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
     // client.query(`INSERT INTO leaderboard(playerName, score) VALUES (${playername}, ${score}})`, (err, response) => {
@@ -95,10 +96,9 @@ app.get('/putLeaderboard/:playername/', function(req, res) {
     //     client.end;
     // })
 
-        res.json({"ello": "mate"});
+    res.json({ "ello": "mate" });
 
 
-});
 });
 
 
