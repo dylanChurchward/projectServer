@@ -97,11 +97,11 @@ app.get('/putLeaderboard/:playername/:score', function (req, res) {
     //     client.end;
     // })
 
-    var n = req.params.playername;
-    var s = req.params.score;
+    // var n = req.params.playername;
+    // var s = req.params.score;
 
 
-    res.json(n, s);
+    res.json({"test": "ing"});
 
 });
 
