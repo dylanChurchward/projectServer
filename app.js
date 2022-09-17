@@ -76,7 +76,7 @@ app.listen(process.env.PORT || PORT, () => {
 // *************************************************************************************************
 //                                Resources for 2048 clone project
 
-// convert kilograms to pounds microservice
+// Get all entries from the leader board
 app.get('/getLeaderboard', function(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
@@ -85,7 +85,20 @@ app.get('/getLeaderboard', function(req, res) {
         client.end;
     })
 
+
+    // Add a new record to leader board database 
+app.get('/putLeaderboard/:playername/:score', function(req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
+
+    client.query(`INSERT INTO leaderboard(playerName, score) VALUES (${playername}, ${score}})`, (err, response) => {
+        res.json(response.rows);
+        client.end;
+    })
+
 });
+});
+
+
 
 
 
