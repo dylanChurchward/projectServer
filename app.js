@@ -103,7 +103,9 @@ app.get('/putLeaderboard/:playername/:score', function (req, res) {
 
     console.log(req.params.score)
 
-    res.json({"test": req.params.score});
+    var y = req.params.playername;
+
+    res.json({y: req.params.score});
 
 });
 
