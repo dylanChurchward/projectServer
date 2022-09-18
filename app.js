@@ -91,7 +91,7 @@ app.get('/getLeaderboard', function(req, res) {
 app.get('/putLeaderboard/:playername/:score', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
-    client.insert(`INSERT INTO leaderboard(playername, score) VALUES (${req.params.playername}, ${req.params.score});`);
+    client.insert(`INSERT INTO leaderboard(score, playername) VALUES (${req.params.playername}, ${req.params.score});`);
     client.query(`SELECT * FROM leaderboard;`, (err, response) => {
         res.json(response.rows);
         client.end;
