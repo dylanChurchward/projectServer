@@ -91,22 +91,15 @@ app.get('/getLeaderboard', function(req, res) {
 app.get('/putLeaderboard/:playername/:score', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
-    // client.query(`INSERT INTO leaderboard (${req.params.playername}, ${req.params.score})`);
-    // client.query(`SELECT * FROM leaderboard`, (err, response) => {
-    //     res.json(response.rows);
-    //     client.end;
-    // })
-
-    // var n = req.params.playername;
-    // var s = req.params.score;
+    client.query(`INSERT INTO leaderboard(playername, score) VALUES (${req.params.playername}, ${req.params.score});`);
+    client.query(`SELECT * FROM leaderboard;`, (err, response) => {
+        res.json(response.rows);
+        client.end;
+    })
 
 
-    console.log(req.params.score)
-
-    var y = req.params.playername;
-
-    res.json({"playername": req.params.playername, 
-              "score": req.params.score});
+    // res.json({"playername": req.params.playername, 
+    //           "score": req.params.score});
 
 });
 
