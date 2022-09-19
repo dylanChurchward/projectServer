@@ -99,7 +99,7 @@ app.get('/putLeaderboard/:playername/:score', function (req, res) {
 });
 
 // clears all data from leader board table 
-app.get('/putLeaderboard/clearBoard', function (req, res) {
+app.get('/clearBoard', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
     client.query(`TRUNCATE TABLE leaderboard;`); 
 });
