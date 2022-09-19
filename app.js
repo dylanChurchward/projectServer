@@ -96,7 +96,6 @@ app.get('/putLeaderboard/:playername/:score', function (req, res) {
         res.json(response.rows);
         client.end;
     })
-
     
 });
 
