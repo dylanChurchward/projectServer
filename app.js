@@ -79,7 +79,12 @@ app.listen(process.env.PORT || PORT, () => {
 // Get all entries from the leader board
 app.get('/getLeaderboard/:limit', function(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
-        res.json(getSortedLeaderBoard(req.params.limit));
+
+    client.query(`SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10`, (err, response) => {
+        res.json(response.rows);
+        client.end;
+    })
+
 });
 
 // Add a new record to leader board database 
@@ -87,21 +92,13 @@ app.get('/putLeaderboard/:playername/:score', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
     client.query(`INSERT INTO leaderboard(playername, score) VALUES ('${req.params.playername}', ${req.params.score});`);
-    client.query(`SELECT * FROM leaderboard;`, (err, response) => {
+    client.query(`SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10`, (err, response) => {
         res.json(response.rows);
         client.end;
     })
 });
 
-function getSortedLeaderBoard(limit) {
-    var leaders;
-    client.query(`SELECT * FROM leaderboard ORDER BY score DESC LIMIT ${limit}`, (err, response) => {
-        leaders = response.rows;
-    })
 
-    client.end;
-    return leaders;
-}
 
 
 
