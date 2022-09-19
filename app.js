@@ -77,14 +77,9 @@ app.listen(process.env.PORT || PORT, () => {
 //                                Resources for 2048 clone project
 
 // Get all entries from the leader board
-app.get('/getLeaderboard', function(req, res) {
+app.get('/getLeaderboard/:limit', function(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
-
-    client.query(`SELECT * FROM leaderboard ORDER BY score DESC LIMIT 10`, (err, response) => {
-        res.json(response.rows);
-        client.end;
-    })
-
+        res.json(getSortedLeaderBoard(req.params.limit));
 });
 
 // Add a new record to leader board database 
@@ -96,14 +91,17 @@ app.get('/putLeaderboard/:playername/:score', function (req, res) {
         res.json(response.rows);
         client.end;
     })
-
-    
-
-
-    // res.json({"playername": req.params.playername, 
-    //           "score": req.params.score});
-
 });
+
+function getSortedLeaderBoard(limit) {
+    var leaders;
+    client.query(`SELECT * FROM leaderboard ORDER BY score DESC LIMIT ${limit}`, (err, response) => {
+        leaders = response.rows;
+    })
+
+    client.end;
+    return leaders;
+}
 
 
 
