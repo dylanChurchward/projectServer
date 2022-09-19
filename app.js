@@ -87,7 +87,7 @@ app.get('/getLeaderboard/:limit', function(req, res) {
 
 });
 
-// Add a new record to leader board database 
+// Add a new record to leader board database, return updated sorted list of leader board
 app.get('/putLeaderboard/:playername/:score', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // this line allows the local server to work properly while using "live server"
 
